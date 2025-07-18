@@ -2,12 +2,12 @@ package sqa.main;
 
 public class Ranking {
 	
-	public String CalculateMembershipRank(int purchaseTotal, int frequency, int pointCollected)
+	public static String CalculateMembershipRank(int purchaseTotal, int frequency, int pointCollected)
 	{	
 		String rank = "Standard";	//every member starts with "Standard" ranking
 	
 	    if ((purchaseTotal>=10000) && (frequency>=1) && (frequency>=2) && (pointCollected>=100))
-	    {	rank = "Silver";
+	    {	rank = "Silver"; 
 	    }
 	    else if ((purchaseTotal>=50000) && (frequency>=3) && (frequency>=5) && (pointCollected>=500))
 	    {	rank = "Gold";
