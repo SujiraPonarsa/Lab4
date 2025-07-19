@@ -40,5 +40,35 @@ public class RankingBoundaryTest {
     public void testBelowAllBoundaries() {
         assertEquals("Standard", ranking.CalculateMembershipRank(9999, 1, 99));
     }
+     
+    @Test
+    public void pointCollected_min()     { 
+    	assertEquals("Silver", ranking.CalculateMembershipRank(20000, 2, 100)); 
+    }
+    @Test 
+    
+    public void pointCollected_minPlus() { 
+    	assertEquals("Silver", ranking.CalculateMembershipRank(20000, 2, 101)); 
+    }
+    @Test 
+    public void pointCollected_maxMinus(){
+    	assertEquals("Gold", ranking.CalculateMembershipRank(70000, 4, 999)); 
+    }
+    @Test 
+    public void pointCollected_max()     { 
+    	assertEquals("Platinum", ranking.CalculateMembershipRank(10000, 6, 1000)); 
+    }
+    @Test 
+    public void frequency_min(){ 
+    	assertEquals("Silver", ranking.CalculateMembershipRank(20000, 1, 200)); 
+    }
+    @Test 
+    public void frequency_minPlus(){ 
+    	assertEquals("Silver", ranking.CalculateMembershipRank(20000, 2, 200)); 
+    }
+    
+    @Test 
+    public void allNominal(){ 
+    	assertEquals("Gold", ranking.CalculateMembershipRank(70000, 4, 700)); 
+    }
 }
-

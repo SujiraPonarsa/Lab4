@@ -9,57 +9,88 @@ public class RankingRobustnessTest {
     private final Ranking ranking = new Ranking();
 
     @Test
-    public void negativePurchaseTotal() {
-        assertEquals("Standard", ranking.CalculateMembershipRank(-1, 2, 200));
+    public void TC1() {
+        assertEquals("Invalid", ranking.CalculateMembershipRank(-1, 15, 500));
     }
 
     @Test
-    public void negativeFrequency() {
-        assertEquals("Standard", ranking.CalculateMembershipRank(10000, -1, 200));
+    public void TC2() {
+        assertEquals("Standard", ranking.CalculateMembershipRank(0, 15, 500));
     }
 
     @Test
-    public void negativePointCollected() {
-        assertEquals("Standard", ranking.CalculateMembershipRank(20000, 2, -1));
+    public void TC3() {
+        assertEquals("Standard", ranking.CalculateMembershipRank(1, 15, 500));
     }
 
     @Test
-    public void tooHighPurchaseTotal() {
-        assertEquals("Platinum", ranking.CalculateMembershipRank(1000000, 7, 1500));
+    public void TC4() {
+        assertEquals("Gold", ranking.CalculateMembershipRank(50000, 15, 500));
     }
 
     @Test
-    public void tooHighFrequency() {
-        assertEquals("Standard", ranking.CalculateMembershipRank(150000, 8, 2000));
+    public void TC5() {
+        assertEquals("Gold", ranking.CalculateMembershipRank(99999, 15, 500));
     }
 
     @Test
-    void tooHighPointCollected() {
-        assertEquals("Platinum", ranking.CalculateMembershipRank(120000, 7, 100_000));
+    void TC6() {
+        assertEquals("Gold", ranking.CalculateMembershipRank(100000, 15, 5000));
     }
     
     @Test
-    public void allNegativeValues() {
-        assertEquals("Standard", ranking.CalculateMembershipRank(-10000, -2, -300));
+    public void TC7() {
+        assertEquals("Silver", ranking.CalculateMembershipRank(100001, 15, 500));
     }
 
     @Test
-    public void allZeroValues() {
-        assertEquals("Standard", ranking.CalculateMembershipRank(0, 0, 0));
+    public void TC8() {
+        assertEquals("Silver", ranking.CalculateMembershipRank(50000, 0, 500));
+    }
+    @Test
+    public void TC9() {
+        assertEquals("Silver", ranking.CalculateMembershipRank(50000, 1, 500));
     }
 
     @Test
-    public void frequencyZeroPointsNegative() {
-        assertEquals("Standard", ranking.CalculateMembershipRank(15000, 0, -10));
+    public void TC10() {
+        assertEquals("Silver", ranking.CalculateMembershipRank(50000, 2, 500));
     }
 
     @Test
-    public void frequencyHighPointsNegative() {
-        assertEquals("Standard", ranking.CalculateMembershipRank(120000, 100, -10));
+    public void TC11() {
+        assertEquals("Gold", ranking.CalculateMembershipRank(50000, 30, 500));
     }
+    @Test 
+    public void TC12()       { 
+    	assertEquals("Gold", ranking.CalculateMembershipRank(50000, 31, 500)); 
+    }
+    @Test public void TC13()   { 
+    	assertEquals("Gold", ranking.CalculateMembershipRank(50000, 32, 500));
     
-    @Test
-    public void allAbovePlatinum() {
-        assertEquals("Standard", ranking.CalculateMembershipRank(200000, 20, 10_000));
+    }
+    @Test 
+    public void TC14()        { 
+    	assertEquals("Invalid", ranking.CalculateMembershipRank(50000, 15, -1)); 
+    }
+    @Test 
+    public void TC15()    {
+    	assertEquals("Standard", ranking.CalculateMembershipRank(50000, 15, 0)); 
+    }
+    @Test 
+    public void TC16()    { 
+    	assertEquals("Standard", ranking.CalculateMembershipRank(50000, 15, 1)); 
+    } 
+    @Test 
+    public void TC17()   {
+    	assertEquals("Gold", ranking.CalculateMembershipRank(50000, 15, 999)); 
+    }
+    @Test 
+    public void TC18()        {
+    	assertEquals("Gold", ranking.CalculateMembershipRank(50000, 15, 1000)); 
+    }
+    @Test 
+    public void TC19()    { 
+    	assertEquals("Gold", ranking.CalculateMembershipRank(50000, 15, 1001)); 
     }
 }
